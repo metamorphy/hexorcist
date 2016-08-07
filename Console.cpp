@@ -26,7 +26,7 @@ void PrintBoard();
 // *************************************************
 // **** main
 // *************************************************
-void main(void)
+int main(void)
 {
 	void  *VStorage, *HStorage;
 	// WIN long tmp;
@@ -41,14 +41,14 @@ void main(void)
 	srand(time(NULL));	
 
 	VStorage=(void *)malloc(1048576L); // WIN NewPtr(1048576L);
-	if (!VStorage) return;
+	if (!VStorage) return -1;
 	// WIN tmp=GetPtrSize(VStorage);
 	
 	p = (char *)VStorage;
 	for (i=0; i<1048576L; ++i) *(p++) = 0;
 		
 	HStorage=(void *)malloc(1048576L); // WIN NewPtr(1048576L);
-	if (!HStorage) return;
+	if (!HStorage) return -1;
 	// WIN tmp=GetPtrSize(HStorage);
 
 	p = (char *)HStorage;
@@ -76,4 +76,6 @@ void main(void)
 		PrintBoard();
 		firstTime = false;
 	}
+
+	return 0;
 }
