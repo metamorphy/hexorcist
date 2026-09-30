@@ -2,6 +2,21 @@
 
 A [Hex](https://en.wikipedia.org/wiki/Hex_(board_game)) playing engine written in C in 1997 by Jeff Mallett.
 
+```text
+  0 1 2 3 4 5 6 7 8
+0  . . . . . . . . .
+ 1  . . . . . . . V .
+  2  . . V . . . . V .
+   3  . . . V . . . . .
+    4  . . . . . . V . .
+     5  . . V H H H V . .
+      6  . . . . . . H . .
+       7  . H . V . H . . .
+        8  . H . . . . . . .
+```
+
+Hex is played on a rhombus of hexagons. V tries to link the top and bottom edges, H the left and right. In this 9×9 position from the contest's problem statement, V can force a win.
+
 It was submitted to the [MacTech Magazine](https://en.wikipedia.org/wiki/MacTech) programming contest and took second place, narrowly losing to Gregory Cooper's entry 80.08 to 79.98 points. The contest asked for a player that implemented a fixed `Hex()` entry point, used only 1MB of host-provided storage, and played on boards from 8×8 up to 64×64. Each win scored 10 points minus a time penalty. Vertical plays first and connects top to bottom; horizontal connects left to right.
 
 Instead of a game-tree search, Hexorcist evaluates the board as terrain. Each hex gets a height from the influence of the edges and the pieces on the board. The engine then "pours water" in from one edge to find the lowest path across and picks moves at the saddle points along it. Connection tactics sit on top of this: stones are merged into groups, strong (adjacent) and weak (two-bridge) connections are tracked, and bonuses nudge the move toward hexes that link groups or block the opponent's links.
