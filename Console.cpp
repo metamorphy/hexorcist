@@ -61,10 +61,8 @@ int main(void)
 	for (i=0; i<MOVES; ++i) {
 		if (!i && isVert)
 			x = y = -1;
-		else {
-			scanf("%ld", &x);
-			scanf("%ld", &y);
-		}
+		else if (scanf("%ld %ld", &x, &y) != 2)
+			break; // End of input
 		Hex (16, y, x, &moveRow, &moveCol, VStorage, firstTime, isVert);
 	/*
 		Hex (16, -1, -1, &moveRow, &moveCol, isVert ? VStorage : HStorage, firstTime, isVert);
