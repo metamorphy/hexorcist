@@ -1,1 +1,70 @@
-// main()     THIS FILE NOT PART OF SOLUTION  (See Hex.c instead)// Copyright Jeff Mallett 1997#include <stdio.h>#include <stdlib.h>#include <time.h>Boolean /*legalMove*/ Hex (  long boardSize,     /* number of rows/columns in the game board */  long oppRow,        /* row where opponent last moved, 0 .. boardSize-1 */  long oppCol,        /* column where opponent last moved, 0 .. boardSize-1 */  long *moveRow,      /* return your move - row, 0 .. boardSize-1 */  long *moveCol,      /* return your move - column, 0 .. boardSize-1 */  void *privStorage,  /* preallocated storage for your use */  Boolean newGame,    /* TRUE if this is your first move in a new game */  Boolean playFirst   /* TRUE if you play first (vertically) */);void PrintBoard();#define MOVES	40// *************************************************// **** main// *************************************************void main(void){	void  *board, *VStorage, *HStorage;	long tmp;	char *p;	long i;	long moveRow, moveCol, x, y;	Boolean isVert;	Boolean firstTime = true;	printf ("Hello World, this is Hex!\n\n");	srand(time(NULL));		VStorage=(void *)NewPtr(1048576L);	if (!VStorage) return;	tmp=GetPtrSize(VStorage);		p = VStorage;	for (i=0; i<1048576L; ++i) *(p++) = 0;			HStorage=(void *)NewPtr(1048576L);	if (!HStorage) return;	tmp=GetPtrSize(HStorage);	p = HStorage;	for (i=0; i<1048576L; ++i) *(p++) = 0;	//Hex (16, -1, -1, &moveRow, &moveCol, VStorage, true, true);		//isVert = true;	isVert = false;	for (i=0; i<MOVES; ++i) {		scanf("%ld", &x);		scanf("%ld", &y);		Hex (16, y, x, &moveRow, &moveCol, VStorage, firstTime, isVert);	/*		Hex (16, -1, -1, &moveRow, &moveCol, isVert ? VStorage : HStorage, firstTime, isVert);		isVert = !isVert;	*/		if (moveRow == -1)			break;		printf("%ld, %ld\n", moveCol, moveRow);		PrintBoard();		firstTime = false;	}}
+// main()     THIS FILE NOT PART OF SOLUTION  (See Hex.c instead)
+// Copyright Jeff Mallett 1997
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+Boolean /*legalMove*/ Hex (
+  long boardSize,     /* number of rows/columns in the game board */
+  long oppRow,        /* row where opponent last moved, 0 .. boardSize-1 */
+  long oppCol,        /* column where opponent last moved, 0 .. boardSize-1 */
+  long *moveRow,      /* return your move - row, 0 .. boardSize-1 */
+  long *moveCol,      /* return your move - column, 0 .. boardSize-1 */
+  void *privStorage,  /* preallocated storage for your use */
+  Boolean newGame,    /* TRUE if this is your first move in a new game */
+  Boolean playFirst   /* TRUE if you play first (vertically) */
+);
+void PrintBoard();
+
+#define MOVES	40
+// *************************************************
+// **** main
+// *************************************************
+void main(void)
+{
+	void  *board, *VStorage, *HStorage;
+	long tmp;
+	char *p;
+	long i;
+	long moveRow, moveCol, x, y;
+	Boolean isVert;
+	Boolean firstTime = true;
+
+	printf ("Hello World, this is Hex!\n\n");
+
+	srand(time(NULL));	
+
+	VStorage=(void *)NewPtr(1048576L);
+	if (!VStorage) return;
+	tmp=GetPtrSize(VStorage);
+	
+	p = VStorage;
+	for (i=0; i<1048576L; ++i) *(p++) = 0;
+		
+	HStorage=(void *)NewPtr(1048576L);
+	if (!HStorage) return;
+	tmp=GetPtrSize(HStorage);
+
+	p = HStorage;
+	for (i=0; i<1048576L; ++i) *(p++) = 0;
+
+	//Hex (16, -1, -1, &moveRow, &moveCol, VStorage, true, true);
+	
+	//isVert = true;
+	isVert = false;
+	for (i=0; i<MOVES; ++i) {
+		scanf("%ld", &x);
+		scanf("%ld", &y);
+		Hex (16, y, x, &moveRow, &moveCol, VStorage, firstTime, isVert);
+	/*
+		Hex (16, -1, -1, &moveRow, &moveCol, isVert ? VStorage : HStorage, firstTime, isVert);
+		isVert = !isVert;
+	*/
+		if (moveRow == -1)
+			break;
+		printf("%ld, %ld\n", moveCol, moveRow);
+		PrintBoard();
+		firstTime = false;
+	}
+}
