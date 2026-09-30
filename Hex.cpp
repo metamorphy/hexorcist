@@ -19,6 +19,14 @@
 #include <stdlib.h>
 #include <time.h>
 
+// Define HEX_DEBUG to print the engine's internal boards as it thinks
+#ifdef HEX_DEBUG
+void PrintBonuses();
+void PrintConnections();
+void PrintFlooded();
+void PrintNumericBoard();
+#endif
+
 typedef short GROUP;
 typedef struct SConnections {
 	GROUP Strong[3];
@@ -198,6 +206,10 @@ Boolean /*legalMove*/ Hex (
 		gGroupsStart = gGroups + k;
 		gBonusStart = gBonus + k;
 		gToDoStart = gToDo + k;
+#ifdef HEX_DEBUG
+		i = (char *)(gDividedBy + gBoardSize) - (char *)privStorage;
+		printf("Total K = %ld\n", i/1024);
+#endif
 	
 		gDirs[0] = E;
 		gDirs[1] = SE;
@@ -249,8 +261,15 @@ Boolean /*legalMove*/ Hex (
 	if (!move)
 		move = ConnectionTactics(!playFirst, false);
 	
+#ifdef HEX_DEBUG
+	PrintBonuses();
+#endif
+
 	if (!move) {
 		InfluenceGraphs();
+#ifdef HEX_DEBUG
+		PrintNumericBoard();
+#endif
 		
 		if (GetSaddlePoints()) {
 			move = AdjustMove(GetBestSaddle(playFirst));
@@ -330,6 +349,9 @@ unsigned long *GetBestSaddle(Boolean isVertical)
 		
 	// #1 Flood method: Use highest flooded saddle
 	Flood(isVertical);
+#ifdef HEX_DEBUG
+	PrintFlooded();
+#endif
 	bestScore = -INFINITY;
 	for (s=gSaddles; *s; ++s) {
 		offset = *s - gBoard;
@@ -1228,6 +1250,10 @@ unsigned long * ConnectionTactics(Boolean isVertical, Boolean friendly)
 			}
 		}
 	} while (found);
+
+#ifdef HEX_DEBUG
+	PrintConnections();
+#endif
 	
 	// FIND STRONG CONNECTIONS FOR EMPTIES
 	// For each empty, find all strong connections (adjacent piece)

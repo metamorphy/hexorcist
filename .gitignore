@@ -106,3 +106,9 @@ desktop.ini
 *.tlog
 ipch/
 .vs/
+
+# --- Personal info in the original 1997 contest submission ---
+/mactech/submission/Contact Info
+
+# --- Metrowerks CodeWarrior (classic Mac OS) debug symbols ---
+*.xSYM
