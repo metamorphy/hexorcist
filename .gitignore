@@ -1,0 +1,108 @@
+# ---------------------------------------------------------------
+# .gitignore for a C++ project built with Eclipse Neon (CDT)
+# ---------------------------------------------------------------
+
+# --- Eclipse CDT build configurations (generated makefiles + output) ---
+Debug/
+Release/
+*/Debug/
+*/Release/
+build/
+bin/
+
+# --- Eclipse workspace / IDE state ---
+.metadata/
+RemoteSystemsTempFiles/
+.recommenders/
+*.launch
+.settings/language.settings.xml
+.autotools
+.loadpath
+.externalToolBuilders/
+*.bak
+*.tmp
+*~.nib
+local.properties
+
+# NOTE: .project and .cproject are intentionally NOT ignored.
+# They hold the project definition and build settings, so teammates
+# (and future you) can import the project and build it as-is.
+
+# --- Compiled object files ---
+*.o
+*.obj
+*.slo
+*.lo
+*.ko
+*.elf
+*.d
+
+# --- Precompiled headers ---
+*.gch
+*.pch
+
+# --- Libraries ---
+*.a
+*.lib
+*.la
+*.lai
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# --- Executables ---
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# --- Debug / profiling artifacts ---
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.ilk
+gmon.out
+core
+core.*
+vgcore.*
+
+# --- Fortran/other module files some toolchains emit ---
+*.mod
+*.smod
+
+# --- OS junk ---
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# --- Editor backups ---
+*.swp
+*.swo
+*~
+
+# --- Microsoft Visual C++ 6.0 (AppWizard) / Visual Studio .NET ---
+# NOTE: *.dsp, *.dsw, *.sln and *.vcproj are the project/solution
+# definitions and are intentionally NOT ignored.
+*.ncb
+*.opt
+*.plg
+*.aps
+*.clw
+*.bsc
+*.sbr
+*.res
+*.suo
+*.user
+*.vcproj.*.user
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.tlog
+ipch/
+.vs/
