@@ -1,0 +1,9 @@
+# Visual C++ 6.0 can't load .dsp/.dsw project files with LF line endings,
+# so keep all Visual Studio project files as CRLF.
+*.dsp     text eol=crlf
+*.dsw     text eol=crlf
+*.sln     text eol=crlf
+*.vcproj  text eol=crlf
+
+# Keep the 1997 contest files exactly as submitted (classic Mac CR endings).
+mactech/** -text
