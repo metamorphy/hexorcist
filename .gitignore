@@ -2,6 +2,8 @@
 # .gitignore for a C++ project built with Eclipse Neon (CDT)
 # ---------------------------------------------------------------
 
+ignore/
+
 # --- Eclipse CDT build configurations (generated makefiles + output) ---
 Debug/
 Release/
